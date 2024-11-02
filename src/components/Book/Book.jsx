@@ -11,8 +11,8 @@ const Book = ({ book }) => {
         <img className="h-[150px] mx-auto" src={image} alt="" />
       </div>
       <div className="flex gap-4">
-        {tags.map((tag) => (
-          <span className="bg-[#d8ffd2] py-0.5 px-3 rounded-xl text-[#23BE0A] font-medium">
+        {tags.map((tag, index) => (
+          <span key={index} className="bg-[#d8ffd2] py-0.5 px-3 rounded-xl text-[#23BE0A] font-medium">
             {tag}
           </span>
         ))}

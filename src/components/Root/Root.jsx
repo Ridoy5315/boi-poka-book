@@ -8,7 +8,7 @@ const Root = props => {
      return (
           <div className='w-10/12 mx-auto'>
                <Navbar></Navbar>
-               <Outlet></Outlet>
+               <Outlet className="mb-20" ></Outlet>
                <Footer></Footer>
           </div>
      );
