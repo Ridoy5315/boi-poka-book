@@ -1,8 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useLoaderData, useParams } from "react-router-dom";
+import { addToStoredReadList, addToStoredWishList } from "../../utility/addToDB";
 
 const BookDetail = () => {
+
+  const handleMarkAsRead = (id) =>{
+    addToStoredReadList(id);
+  }
+
+  const handleAddToWishList = (id) => {
+    addToStoredWishList(id);
+  }
+
   const { bookId } = useParams();
   const id = parseInt(bookId);
 
@@ -58,8 +68,8 @@ const BookDetail = () => {
           </ul>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <button className="border font-semibold text-lg hover:bg-base-300 rounded-lg py-2">Read</button>
-          <button className="bg-[#50B1C9] hover:bg-[#27d4ff] text-white font-semibold text-lg rounded-lg py-2">Wishlist</button>
+          <button onClick={() => handleMarkAsRead(id)} className="border font-semibold text-lg hover:bg-base-300 rounded-lg py-2">Mark as Read</button>
+          <button onClick={() => handleAddToWishList(id)} className="bg-[#50B1C9] hover:bg-[#27d4ff] text-white font-semibold text-lg rounded-lg py-2">Add to Wish List</button>
         </div>
       </div>
     </div>
