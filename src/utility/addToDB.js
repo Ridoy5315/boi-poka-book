@@ -1,57 +1,76 @@
+import { toast } from "react-toastify";
+
 const getStoredReadList = () => {
+  const storedReadListStr = localStorage.getItem("read-list");
 
-     const storedReadListStr = localStorage.getItem('read-list');
-
-     if(storedReadListStr){
-          const storedReadList = JSON.parse(storedReadListStr);
-          return storedReadList;
-     }
-     else{
-          return [];
-     }
-}
+  if (storedReadListStr) {
+    const storedReadList = JSON.parse(storedReadListStr);
+    return storedReadList;
+  } else {
+    return [];
+  }
+};
 
 const addToStoredReadList = (id) => {
+  const getReadList = getStoredReadList();
 
-     const getReadList = getStoredReadList();
-
-     if(getReadList.includes(id)){
-          return;
-     }
-     else{
-          getReadList.push(id);
-          const readListStr = JSON.stringify(getReadList);
-          localStorage.setItem('read-list', readListStr);
-     }
-}
-
+  if (getReadList.includes(id)) {
+    toast.error("Already added", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  } else {
+    getReadList.push(id);
+    const readListStr = JSON.stringify(getReadList);
+    localStorage.setItem("read-list", readListStr);
+    toast("successfully added in your read list");
+  }
+};
 
 const getStoredWishList = () => {
-     const storedWishListStr = localStorage.getItem('wish-list');
+  const storedWishListStr = localStorage.getItem("wish-list");
 
-     if(storedWishListStr){
-          const storedWishList = JSON.parse(storedWishListStr);
-          return storedWishList;
-     }
-     else{
-          return [] ;
-     }
-}
+  if (storedWishListStr) {
+    const storedWishList = JSON.parse(storedWishListStr);
+    return storedWishList;
+  } else {
+    return [];
+  }
+};
 
 const addToStoredWishList = (id) => {
+  const getWishList = getStoredWishList();
 
-     const getWishList = getStoredWishList();
+  if (getWishList.includes(id)) {
+    toast.error("Already added", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  } else {
+    getWishList.push(id);
 
-     if(getWishList.includes(id)){
-          return;
-     }
-     else{
-          getWishList.push(id);
+    const wishListStr = JSON.stringify(getWishList);
 
-          const wishListStr = JSON.stringify(getWishList);
+    localStorage.setItem("wish-list", wishListStr);
+    toast("successfully added in your read list");
+  }
+};
 
-          localStorage.setItem('wish-list', wishListStr);
-     }
-}
-
-export {addToStoredReadList, addToStoredWishList};
+export {
+  addToStoredReadList,
+  getStoredReadList,
+  addToStoredWishList,
+  getStoredWishList,
+};
